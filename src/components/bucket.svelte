@@ -27,19 +27,27 @@
     post = await pb.collection('bucket').create(data);
     getItems();
     console.log(data);
-  }
+  	}
+
+	async function handleDelete(currentPost) {
+		await pb.collection('bucket').delete(currentPost);
+		getItems();
+	}
 
 </script>
 
 <div class="container-container">
 	<div class="center-content">
 		<form on:submit={postItem}>
-			<input type="text" placeholder="Go climbing..." bind:value={inputText}/>
+			<input type="text" placeholder="Go Climbing..." bind:value={inputText}/>
 			<button>Add</button>
 		</form>
 		<div class="container">
 			{#each records as record}
-				<div class="bucket-item">{record.bucket_text}</div>
+				<div class="bucket-item">
+					<span>{record.bucket_text}</span>
+					<button class="item-button" on:click={() => handleDelete(record.id)}>Delete</button>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -102,12 +110,29 @@
 		color: black;
 		padding: 1rem 0rem 1rem 0rem;
 		margin-bottom: 1rem;
-		text-align: center;
 		border: solid black 0.2rem;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	.bucket-item:hover {
 		background-color: rgb(255, 194, 254);
 		transition: 0.2s;
+	}
+
+	.bucket-item span {
+		padding-left: 1rem;
+		height: fit-content;
+		align-self: center;
+	}
+
+	.item-button {
+		margin-right: 1rem;
+		background-color: rgb(237, 127, 127);
+		border: solid black .1rem;
+	}
+
+	.item-button:hover {
+		background-color: rgb(237, 127, 127);
 	}
 </style>
