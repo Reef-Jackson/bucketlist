@@ -10,6 +10,3 @@ A bucketlist app built using SvelteKit, NodeJS, PocketBase and some Vanilla Java
 - And you're done.
 
 Admin login for editting yourself: 
-
-- Email: example@email.com
-- Pass: BC1RYOYEMiwnD4XZyFCL8m8ijVNGJo-H
